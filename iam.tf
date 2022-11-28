@@ -32,7 +32,7 @@ resource "aws_iam_role_policy_attachment" "execution_ecs" {
 resource "aws_iam_role_policy" "execution_secrets" {
   role   = aws_iam_role.execution.id
   name   = "${var.name}-ecs-execution-secrets"
-  policy = length(var.secret) > 0 ? data.aws_iam_policy_document.secrets.json : data.aws_iam_policy_document.noop.json
+  policy = length(var.secrets) > 0 ? data.aws_iam_policy_document.secrets.json : data.aws_iam_policy_document.noop.json
 }
 
 /* ECS supports reading secrets from both secrets manager and parameter store.
